@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -25,11 +26,12 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
 
-    SeekBar skOne,skTwo,skThree;
+    SeekBar skOne, skTwo, skThree;
     ImageButton imgPlay;
-    CheckBox ckOne,ckTwo,ckThree;
+    CheckBox ckOne, ckTwo, ckThree;
     Random random;
-    int indexOne , indexTwo , indexThree = 0;
+    int indexOne, indexTwo, indexThree = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,28 +43,69 @@ public class MainActivity extends AppCompatActivity {
 //            + Chọn 1 check box
 //            + Sau đó mới được start
         init();
-        seekbarRandom();
+        event();
+
+    }
+
+    private void event() {
+        imgPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                seekbarRandom();
+            }
+        });
     }
 
     private void init() {
         random = new Random();
+        singleChoiceCheckbox();
+    }
+
+    private void singleChoiceCheckbox() {
+        ckOne.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    ckTwo.setChecked(false);
+                    ckThree.setChecked(false);
+                }
+            }
+        });
+        ckTwo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    ckOne.setChecked(false);
+                    ckThree.setChecked(false);
+                }
+            }
+        });
+        ckThree.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    ckOne.setChecked(false);
+                    ckTwo.setChecked(false);
+                }
+            }
+        });
     }
 
     private void seekbarRandom() {
-        CountDownTimer countDownTimer = new CountDownTimer(60000,1000) {
+        CountDownTimer countDownTimer = new CountDownTimer(60000, 1000) {
             @Override
             public void onTick(long l) {
-                if (skOne.getProgress() >= 100 ){
+                if (skOne.getProgress() >= 100) {
                     Toast.makeText(MainActivity.this, skOne.getTag().toString(), Toast.LENGTH_SHORT).show();
                     this.cancel();
-                }else if (skTwo.getProgress() >= 100){
+                } else if (skTwo.getProgress() >= 100) {
                     Toast.makeText(MainActivity.this, skTwo.getTag().toString(), Toast.LENGTH_SHORT).show();
                     this.cancel();
 
-                }else if (skThree.getProgress() >= 100){
+                } else if (skThree.getProgress() >= 100) {
                     Toast.makeText(MainActivity.this, skThree.getTag().toString(), Toast.LENGTH_SHORT).show();
                     this.cancel();
-                }else{
+                } else {
                     indexOne = random.nextInt(10);
                     indexTwo = random.nextInt(10);
                     indexThree = random.nextInt(10);
@@ -75,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                Log.d("BBB","Finish");
+                Log.d("BBB", "Finish");
             }
         };
         countDownTimer.start();
