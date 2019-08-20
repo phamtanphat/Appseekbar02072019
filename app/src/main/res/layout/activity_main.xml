@@ -5,16 +5,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     tools:context=".MainActivity">
 
-    <SeekBar
-        android:id="@+id/seekbar"
-        android:secondaryProgressTint="@color/design_default_color_primary"
-        android:secondaryProgress="60"
-        android:progressTint="@color/colorPrimary"
-        android:progress="40"
+    <RelativeLayout
+        android:background="@drawable/backgroundracing"
+        android:id="@+id/relative1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="150dp">
+        <ImageButton
+            android:id="@+id/imageviewPlay"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/iconstart"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/relative1"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/linear1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <CheckBox
+                android:id="@+id/checkboxOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <SeekBar
+                android:thumb="@drawable/iconbee"
+                android:id="@+id/seekbarOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_above="@id/linear1"
+            android:layout_margin="5dp"
+            android:id="@+id/linear2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <CheckBox
+                android:id="@+id/checkboxTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <SeekBar
+                android:thumb="@drawable/iconfrog"
+                android:id="@+id/seekbarTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_above="@id/linear2"
+            android:layout_margin="5dp"
+            android:id="@+id/linear3"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <CheckBox
+                android:id="@+id/checkboxThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <SeekBar
+                android:thumb="@drawable/iconssheep"
+                android:id="@+id/seekbarThree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
