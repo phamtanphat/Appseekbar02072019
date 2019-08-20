@@ -9,6 +9,7 @@
     tools:context=".MainActivity">
 
     <SeekBar
+        android:id="@+id/seekbar"
         android:secondaryProgressTint="@color/design_default_color_primary"
         android:secondaryProgress="60"
         android:progressTint="@color/colorPrimary"
