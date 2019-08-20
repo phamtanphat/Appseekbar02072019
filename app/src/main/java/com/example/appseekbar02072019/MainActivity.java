@@ -1,5 +1,6 @@
 package com.example.appseekbar02072019;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,9 +14,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -49,18 +52,30 @@ public class MainActivity extends AppCompatActivity {
         CountDownTimer countDownTimer = new CountDownTimer(60000,1000) {
             @Override
             public void onTick(long l) {
-                indexOne = random.nextInt(10);
-                indexTwo = random.nextInt(10);
-                indexThree = random.nextInt(10);
+                if (skOne.getProgress() >= 100 ){
+                    Toast.makeText(MainActivity.this, skOne.getTag().toString(), Toast.LENGTH_SHORT).show();
+                    this.cancel();
+                }else if (skTwo.getProgress() >= 100){
+                    Toast.makeText(MainActivity.this, skTwo.getTag().toString(), Toast.LENGTH_SHORT).show();
+                    this.cancel();
 
-                skOne.setProgress(skOne.getProgress() + indexOne);
-                skTwo.setProgress(skTwo.getProgress() + indexTwo);
-                skThree.setProgress(skThree.getProgress() + indexThree);
+                }else if (skThree.getProgress() >= 100){
+                    Toast.makeText(MainActivity.this, skThree.getTag().toString(), Toast.LENGTH_SHORT).show();
+                    this.cancel();
+                }else{
+                    indexOne = random.nextInt(10);
+                    indexTwo = random.nextInt(10);
+                    indexThree = random.nextInt(10);
+
+                    skOne.setProgress(skOne.getProgress() + indexOne);
+                    skTwo.setProgress(skTwo.getProgress() + indexTwo);
+                    skThree.setProgress(skThree.getProgress() + indexThree);
+                }
             }
 
             @Override
             public void onFinish() {
-
+                Log.d("BBB","Finish");
             }
         };
         countDownTimer.start();
@@ -69,8 +84,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void anhxa() {
         skOne = findViewById(R.id.seekbarOne);
+        skOne.setTag("Con Ong");
         skTwo = findViewById(R.id.seekbarTwo);
+        skTwo.setTag("Con Cóc");
         skThree = findViewById(R.id.seekbarThree);
+        skThree.setTag("Con Cừu");
         imgPlay = findViewById(R.id.imageviewPlay);
         ckOne = findViewById(R.id.checkboxOne);
         ckTwo = findViewById(R.id.checkboxTwo);
