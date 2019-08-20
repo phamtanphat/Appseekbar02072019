@@ -106,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, skThree.getTag().toString(), Toast.LENGTH_SHORT).show();
                     this.cancel();
                 } else {
-                    indexOne = random.nextInt(10);
-                    indexTwo = random.nextInt(10);
-                    indexThree = random.nextInt(10);
+                    indexOne = random.nextInt(10) + 1;
+                    indexTwo = random.nextInt(10) + 2;
+                    indexThree = random.nextInt(10) + 3;
 
                     skOne.setProgress(skOne.getProgress() + indexOne);
                     skTwo.setProgress(skTwo.getProgress() + indexTwo);
