@@ -83,6 +83,14 @@ public class MainActivity extends AppCompatActivity {
         skThree.setEnabled(true);
         imgPlay.setEnabled(true);
     }
+    private void resetView(){
+        ckOne.setChecked(false);
+        ckThree.setChecked(false);
+        ckTwo.setChecked(false);
+        skOne.setProgress(0);
+        skTwo.setProgress(0);
+        skThree.setProgress(0);
+    }
     private void init() {
         random = new Random();
         singleChoiceCheckbox();
@@ -127,16 +135,19 @@ public class MainActivity extends AppCompatActivity {
                     this.cancel();
                     isLoading = false;
                     enableView();
+                    resetView();
                 } else if (skTwo.getProgress() >= 100) {
                     Toast.makeText(MainActivity.this, skTwo.getTag().toString(), Toast.LENGTH_SHORT).show();
                     this.cancel();
                     isLoading = false;
                     enableView();
+                    resetView();
                 } else if (skThree.getProgress() >= 100) {
                     Toast.makeText(MainActivity.this, skThree.getTag().toString(), Toast.LENGTH_SHORT).show();
                     this.cancel();
                     isLoading = false;
                     enableView();
+                    resetView();
                 } else {
                     indexOne = random.nextInt(10) + 1;
                     indexTwo = random.nextInt(10) + 2;
