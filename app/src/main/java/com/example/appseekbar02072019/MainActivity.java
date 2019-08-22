@@ -51,11 +51,22 @@ public class MainActivity extends AppCompatActivity {
         imgPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                seekbarRandom();
+                if (ckOne.isChecked() || ckTwo.isChecked() || ckThree.isChecked()){
+                    seekbarRandom();
+                }else{
+                    Toast.makeText(MainActivity.this, "Bạn phải chon 1 con vật", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
-
+    private void disableView(){
+        ckOne.setEnabled(false);
+        ckThree.setEnabled(false);
+        ckTwo.setEnabled(false);
+        skOne.setEnabled(false);
+        skTwo.setEnabled(false);
+        skThree.setEnabled(false);
+    }
     private void init() {
         random = new Random();
         singleChoiceCheckbox();
