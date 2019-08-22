@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     CheckBox ckOne, ckTwo, ckThree;
     Random random;
     int indexOne, indexTwo, indexThree = 0;
-
+    boolean isLoading = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +52,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (ckOne.isChecked() || ckTwo.isChecked() || ckThree.isChecked()){
-                    seekbarRandom();
+                    if (isLoading == false){
+                        isLoading = true;
+                        seekbarRandom();
+                    }else{
+                        Toast.makeText(MainActivity.this, "Đang chạy", Toast.LENGTH_SHORT).show();
+                    }
                 }else{
                     Toast.makeText(MainActivity.this, "Bạn phải chon 1 con vật", Toast.LENGTH_SHORT).show();
                 }
@@ -66,6 +71,16 @@ public class MainActivity extends AppCompatActivity {
         skOne.setEnabled(false);
         skTwo.setEnabled(false);
         skThree.setEnabled(false);
+        imgPlay.setEnabled(false);
+    }
+    private void enableView(){
+        ckOne.setEnabled(true);
+        ckThree.setEnabled(true);
+        ckTwo.setEnabled(true);
+        skOne.setEnabled(true);
+        skTwo.setEnabled(true);
+        skThree.setEnabled(true);
+        imgPlay.setEnabled(true);
     }
     private void init() {
         random = new Random();
@@ -109,13 +124,15 @@ public class MainActivity extends AppCompatActivity {
                 if (skOne.getProgress() >= 100) {
                     Toast.makeText(MainActivity.this, skOne.getTag().toString(), Toast.LENGTH_SHORT).show();
                     this.cancel();
+                    isLoading = false;
                 } else if (skTwo.getProgress() >= 100) {
                     Toast.makeText(MainActivity.this, skTwo.getTag().toString(), Toast.LENGTH_SHORT).show();
                     this.cancel();
-
+                    isLoading = false;
                 } else if (skThree.getProgress() >= 100) {
                     Toast.makeText(MainActivity.this, skThree.getTag().toString(), Toast.LENGTH_SHORT).show();
                     this.cancel();
+                    isLoading = false;
                 } else {
                     indexOne = random.nextInt(10) + 1;
                     indexTwo = random.nextInt(10) + 2;
