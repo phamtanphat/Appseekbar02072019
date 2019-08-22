@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 if (ckOne.isChecked() || ckTwo.isChecked() || ckThree.isChecked()){
                     if (isLoading == false){
                         isLoading = true;
+                        disableView();
                         seekbarRandom();
                     }else{
                         Toast.makeText(MainActivity.this, "Đang chạy", Toast.LENGTH_SHORT).show();
@@ -125,14 +126,17 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, skOne.getTag().toString(), Toast.LENGTH_SHORT).show();
                     this.cancel();
                     isLoading = false;
+                    enableView();
                 } else if (skTwo.getProgress() >= 100) {
                     Toast.makeText(MainActivity.this, skTwo.getTag().toString(), Toast.LENGTH_SHORT).show();
                     this.cancel();
                     isLoading = false;
+                    enableView();
                 } else if (skThree.getProgress() >= 100) {
                     Toast.makeText(MainActivity.this, skThree.getTag().toString(), Toast.LENGTH_SHORT).show();
                     this.cancel();
                     isLoading = false;
+                    enableView();
                 } else {
                     indexOne = random.nextInt(10) + 1;
                     indexTwo = random.nextInt(10) + 2;
